@@ -1,4 +1,4 @@
-from flask import Flask , render_template,request, send_file
+from flask import Flask ,request, send_file
 from flask_cors import CORS
 import matplotlib.pyplot as plt
 import numpy as np
@@ -19,11 +19,10 @@ CORS(app)
 
 @app.route("/",methods=["GET","POST"])
 def main():
+    return send_file("./static/html/index.html")
 
-    return render_template("index.html")
 
-
-@app.route('/saveImg',methods =['POST',"GET"])
+@app.route("/saveImg",methods =['POST',"GET"])
 def save_Img():
     if request.method == "POST":
         list_img = os.listdir("output")
