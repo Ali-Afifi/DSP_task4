@@ -24,15 +24,6 @@ def main():
     return send_file("./static/html/index.html")
 
 
-# @app.route("/js/<filename>", methods=["GET", "POST"])
-# def main(filename):
-#     return send_file(f"./static/js/{filename}")
-
-
-# @app.route("/css/<filename>", methods=["GET", "POST"])
-# def main(filename):
-#     return send_file(f"./static/css/{filename}")
-
 
 @app.route("/saveImg", methods=["POST", "GET"])
 def save_Img():
@@ -70,6 +61,10 @@ def save_image():
 
     if request.method == "POST":
         data = request.get_json()
+
+        # print(type(data["option"])) str
+        # print(type(data["mag"])) bool
+        # print(type(data["phase"])) bool
 
         with open("./input/img1.png", 'wb') as f:
             f.write(base64.b64decode(data["image1"].split(",")[1]))

@@ -6,6 +6,11 @@ let image2 = document.getElementById("image2");
 
 let resultBtn = document.getElementById("result-btn");
 
+let selectBox = document.getElementById("select");
+
+let uniformPhaseCheckBox = document.getElementById("uniform-phase");
+let uniformMagnitudeCheckBox = document.getElementById("uniform-magnitude");
+
 let croppedImage1, croppedImage2;
 
 upload1.addEventListener("change", (e) => {
@@ -70,6 +75,9 @@ resultBtn.onclick = (e) => {
 		body: JSON.stringify({
 			image1: b64Image1,
 			image2: b64Image2,
+			option: selectBox.value,
+			mag: uniformMagnitudeCheckBox.checked,
+			phase: uniformPhaseCheckBox.checked,
 		}),
 		cache: "default",
 	})
