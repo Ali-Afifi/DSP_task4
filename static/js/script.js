@@ -21,6 +21,8 @@ let image1_y2;
 let image2_y1;
 let image2_y2;
 
+let testImg1, testImg2;
+
 checkbox.addEventListener("change", (e) => {
 	send();
 });
@@ -57,6 +59,8 @@ upload1.addEventListener("change", (e) => {
 						image1_y2 = e.detail.height + e.detail.y;
 					},
 				});
+
+				testImg1 = cropper1;
 			}
 		};
 		reader.readAsDataURL(e.target.files[0]);
@@ -100,6 +104,8 @@ upload2.addEventListener("change", (e) => {
 						image2_y2 = e.detail.height + e.detail.y;
 					},
 				});
+
+				testImg2 = cropper2;
 			}
 		};
 		reader.readAsDataURL(e.target.files[0]);
@@ -125,7 +131,7 @@ function send() {
 
 		$.ajax({
 			type: "POST",
-			url: window.location + "/saveImg",
+			url: window.location + "saveImg",
 			data: {
 				original_1: original_img_1,
 				original_2: original_img_2,
@@ -157,3 +163,50 @@ function send() {
 		console.log("please upload two images");
 	}
 }
+
+let testBtn = document.getElementById("test-btn");
+
+testBtn.onclick = (e) => {
+	let croppedImage1 = testImg1.getCroppedCanvas();
+	let croppedImage2 = testImg2.getCroppedCanvas();
+
+	let b64Image1 = croppedImage1.toDataURL("image/png");
+	let b64Image2 = croppedImage2.toDataURL("image/png");
+
+	let img1 = new Image();
+	let img2 = new Image();
+
+	let dim1 = croppedImage1.width + croppedImage1.height;
+	let dim2 = croppedImage2.width + croppedImage2.height;
+
+	if (dim1 >= dim2) {
+		img1.width = croppedImage1.width;
+		img1.height = croppedImage1.height;
+		img2.width = croppedImage1.width;
+		img2.height = croppedImage1.height;
+	} else {
+		img2.width = croppedImage2.width;
+		img2.height = croppedImage2.height;
+		img1.width = croppedImage2.width;
+		img1.height = croppedImage2.height;
+	}
+
+	img1.src = b64Image1;
+	img2.src = b64Image2;
+
+	console.log(img1);
+	console.log(img2);
+
+	// $.ajax({
+	// 	type: "POST",
+	// 	url: window.location + "test",
+	// 	data: JSON.stringify({
+	// 		image1: b64Image1,
+	// 		image2: b64Image2,
+	// 	}),
+	// 	contentType: "application/json",
+	// 	success: function (res) {
+	// 		console.log(res);
+	// 	},
+	// });
+};
