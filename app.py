@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, jsonify
 from flask_cors import CORS
 import matplotlib.pyplot as plt
 import numpy as np
@@ -7,6 +7,8 @@ import os
 import base64
 from combine import *
 import json
+from utils import adjust_images
+
 
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
@@ -20,6 +22,16 @@ CORS(app)
 @app.route("/", methods=["GET", "POST"])
 def main():
     return send_file("./static/html/index.html")
+
+
+# @app.route("/js/<filename>", methods=["GET", "POST"])
+# def main(filename):
+#     return send_file(f"./static/js/{filename}")
+
+
+# @app.route("/css/<filename>", methods=["GET", "POST"])
+# def main(filename):
+#     return send_file(f"./static/css/{filename}")
 
 
 @app.route("/saveImg", methods=["POST", "GET"])
@@ -55,16 +67,18 @@ def send_images(image_name):
 
 @app.route("/test", methods=["POST"])
 def save_image():
-    # data = json.loads(request.get_json())
-    data = request.get_json()
 
+    if request.method == "POST":
+        data = request.get_json()
 
-    with open("./test/img1.png", 'wb') as f:
-        f.write(base64.b64decode(data["image1"].split(",")[1]))
-    with open("./test/img2.png", 'wb') as f:
-        f.write(base64.b64decode(data["image2"].split(",")[1]))
+        with open("./input/img1.png", 'wb') as f:
+            f.write(base64.b64decode(data["image1"].split(",")[1]))
+        with open("./input/img2.png", 'wb') as f:
+            f.write(base64.b64decode(data["image2"].split(",")[1]))
 
-    return "done"
+        adjust_images("./input/img1.png", "./input/img2.png")
+
+        return jsonify(msg="done")
 
 
 if __name__ == "__main__":
