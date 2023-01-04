@@ -11,6 +11,11 @@ let selectBox = document.getElementById("select");
 let uniformPhaseCheckBox = document.getElementById("uniform-phase");
 let uniformMagnitudeCheckBox = document.getElementById("uniform-magnitude");
 
+let result = document.getElementById("result")
+let resultSection = document.getElementsByClassName("result")[0]
+
+
+
 let croppedImage1, croppedImage2;
 
 upload1.addEventListener("change", (e) => {
@@ -82,6 +87,9 @@ resultBtn.onclick = (e) => {
 		cache: "default",
 	})
 		.then((res) => res.json())
-		.then((data) => console.log(data))
+		.then((data) => {
+			result.src = data["img"]
+			resultSection.style.display = "block"
+		})
 		.catch((err) => console.log(err));
 };
