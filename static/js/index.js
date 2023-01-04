@@ -72,7 +72,7 @@ resultBtn.onclick = (e) => {
 	let b64Image1 = croppedImage1.getCroppedCanvas().toDataURL("image/png");
 	let b64Image2 = croppedImage2.getCroppedCanvas().toDataURL("image/png");
 
-	fetch(`${window.location}test`, {
+	fetch(`${window.location}process`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

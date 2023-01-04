@@ -24,7 +24,7 @@ def send_images(image_name):
     return send_file(f"./output/{image_name}", mimetype="image/png")
 
 
-@app.route("/test", methods=["POST"])
+@app.route("/process", methods=["POST"])
 def process_images():
 
     if request.method == "POST":
