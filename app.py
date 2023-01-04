@@ -40,7 +40,11 @@ def process_images():
         resultImagePath = get_combined(data["option"], "./input/img1.png", "./input/img2.png",
                                        uniform_magnitude=data["mag"], uniform_phase=data["phase"])
 
-        return jsonify(msg="done", img=resultImagePath)
+        binary_fc       = open(resultImagePath, 'rb').read()  
+        base64_utf8_str = base64.b64encode(binary_fc).decode('utf-8')
+        dataurl = f'data:image/png;base64,{base64_utf8_str}'
+
+        return jsonify(msg="done", img=dataurl)
 
 
 if __name__ == "__main__":
