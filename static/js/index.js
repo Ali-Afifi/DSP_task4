@@ -84,7 +84,6 @@ resultBtn.onclick = (e) => {
 			mag: uniformMagnitudeCheckBox.checked,
 			phase: uniformPhaseCheckBox.checked,
 		}),
-		cache: "default",
 	})
 		.then((res) => res.json())
 		.then((data) => {
