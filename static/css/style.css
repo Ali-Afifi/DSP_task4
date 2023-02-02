@@ -1,80 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+
 :root {
-  --bs-body-bg: #fff;
-
+    font-family: 'Lato', sans-serif;
 }
 
-#result1 {
-  width: 525px;
-  height: 350px;
-  background-color: #f6f6f6;
-  box-shadow: 1px 1px 2px  rgb(150, 150, 150);
-  margin-top: 10px;
-}
-#image1_info{
-  border: 1px solid black;
+h1 {
+    size: 2.5rem;
 }
 
-#image_input1 {
-  display: inline-block;
-  margin-top: 5px;
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
-#image_input2 {
-  display: inline-block;
-  margin-top: 5px;
-
-
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-#result2 {
-  width: 525px;
-  height: 350px;
-  background-color: #f6f6f6;
-  box-shadow: 1px 1px 2px  rgb(150, 150, 150);
-  margin-top: 10px;
-}
+.image {
+    width: 540px;
+    height: 350px;
+    background-color: #f6f6f6;
 
-#images_2 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-#images_container {
-  position: relative;
-  display: block;
+    border: 2px solid rgba(55, 53, 53, 0.713);
 
 
 }
 
-#comb_img {
-  width: 525px;
-  height: 320px;
-  position: absolute;
-  left: 500px;
+
+.file-input {
+    border: 1px solid rgba(137, 137, 137, 0.713);
+    display: inline-block;
+    cursor: pointer;
+    width: 100%;
+}
+
+.form-control {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    width: 100%;
+    font-family: 'Lato', sans-serif;
 
 }
 
-#options_container {
-  display: flex;
-  flex-direction: column;
-  margin-top: -5%;
-
-
-
+.controls {
+    margin: 2rem;
 }
 
-#title {
-  color: white;
-  text-shadow: 1px 1px 2px black, 0 0 25px darkgray, 0 0 5px black;
+.select {
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 1rem;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    line-height: inherit;
+    text-align: center;
 }
 
+.btn {
+    font-family: 'Lato', sans-serif;
 
-#combine_btn{
-  font-size: 20px;
+    margin-top: 2rem;
+    padding: 1rem;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    background-color: #e9e9e9;
+    cursor: pointer;
 }
 
-.checkbox-form{
-  margin-top: 3%;
+.checkbox-section {
+    align-items: baseline;
+}
+
+.result {
+    margin: 2rem;
+    display: none;
+    
+}
+
+#result {
+    border: 4px solid rgb(0, 0, 0);
+    border-radius: 10px;
+
+    min-width: 400px;
+    max-width: 800px;
+    height: auto;
 }
