@@ -12,32 +12,13 @@ class Image:
 
 
     def get_mag(self):
-        return np.abs((self.fourier_shifted))  # the magnitude after fourier
+        return np.abs((self.fourier_shifted))  
 
     def get_phase(self):
-        return np.exp(1j*(self.phase))
+        return np.exp(1j*(self.phase)) 
 
     def get_mag_shape(self):
         return (np.abs((self.fourier_shifted))).shape
 
     def get_phase_shape(self):
         return self.phase.shape
-
-        if self.value == 1:
-            arr = np.abs(fourier_shifted)  # the magnitude after fourier
-            # arr = self.update(arr)
-            if self.uniform_magnitude == True:
-                arr = np.ones(arr.shape)
-
-        elif self.value == 0:
-            if self.uniform_phase == True:
-                # print(type(self.uniform_phase))
-                arr = np.angle(fourier_shifted)
-                arr = np.zeros(arr.shape)
-                arr = np.exp(1j*arr)
-            else:
-                arr = np.angle(fourier_shifted)  # the phase after fourier
-                # arr = self.update(arr)
-                arr = np.exp(1j*arr)
-
-        return arr
