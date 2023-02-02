@@ -2,7 +2,7 @@ from flask import Flask, request, send_file, jsonify
 from flask_cors import CORS
 import os
 import base64
-from utils import adjust_images, get_combined
+from utils import adjust_images, get_combined_v2, get_combined
 
 
 app = Flask(__name__)
@@ -19,10 +19,6 @@ def main():
     return send_file("./static/html/index.html")
 
 
-@app.route("/output/<image_name>", methods=["GET"])
-def send_images(image_name):
-    return send_file(f"./output/{image_name}", mimetype="image/png")
-
 
 @app.route("/process", methods=["POST"])
 def process_images():
@@ -37,8 +33,14 @@ def process_images():
 
         adjust_images("./input/img1.png", "./input/img2.png")
 
-        resultImagePath = get_combined(data["option"], "./input/img1.png", "./input/img2.png",
+        # resultImagePath = get_combined(data["option"], "./input/img1.png", "./input/img2.png",
+        #                                uniform_magnitude=data["mag"], uniform_phase=data["phase"])
+
+
+        resultImagePath = get_combined_v2(data["option"], "./input/img1.png", "./input/img2.png",
                                        uniform_magnitude=data["mag"], uniform_phase=data["phase"])
+
+
 
         binary_fc       = open(resultImagePath, 'rb').read()  
         base64_utf8_str = base64.b64encode(binary_fc).decode('utf-8')

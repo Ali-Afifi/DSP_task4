@@ -19,7 +19,7 @@ class Image:
                 
         elif self.value == 0:
             if self.uniform_phase == True:
-                print(type(self.uniform_phase))
+                # print(type(self.uniform_phase))
                 arr=np.angle(fourier_shifted)
                 arr = np.zeros(arr.shape)
                 arr = np.exp(1j*arr) 
@@ -27,5 +27,5 @@ class Image:
                 arr=np.angle(fourier_shifted)# the phase after fourier
                 # arr = self.update(arr)
                 arr = np.exp(1j*arr)
-            
+        # print(arr)
         return arr
