@@ -25,7 +25,10 @@ def adjust_images(path1, path2):
 
 
 
-def get_combined_v2(option, path1, path2, uniform_phase, uniform_magnitude):
+def get_combined(option, path1, path2, uniform_phase, uniform_magnitude):
+    
+    adjust_images(path1, path2)
+    
     img1 = Image(path1)
     img2 = Image(path2)
     
